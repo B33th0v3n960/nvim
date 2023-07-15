@@ -1,7 +1,5 @@
 # Neovim Config
 
----
-
 Clone this repo
 
 ```bash
