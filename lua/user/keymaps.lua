@@ -36,6 +36,23 @@ keymap("n", "<leader>8", "<cmd>BufferLineGoToBuffer 8<cr>", opts)
 keymap("n", "<leader>9", "<cmd>BufferLineGoToBuffer 9<cr>", opts)
 keymap("n", "<leader>0", "<cmd>BufferLineGoToBuffer -1<cr>", opts)
 
+keymap(
+	"n",
+	"<leader>b",
+	"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+	opts
+)
+keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>w", "<cmd>w!<CR>", opts)
+keymap("n", "<leader>q", "<cmd>q!<CR>", opts)
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+keymap(
+	"n",
+	"<leader>f",
+	"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+	opts
+)
+
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 

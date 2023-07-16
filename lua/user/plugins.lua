@@ -36,8 +36,6 @@ return packer.startup(function(use)
   use("akinsho/bufferline.nvim")
   use("moll/vim-bbye")
   use("nvim-lualine/lualine.nvim")
-  use("akinsho/toggleterm.nvim")
-  use("ahmedkhalf/project.nvim")
   use("lukas-reineke/indent-blankline.nvim")
   use("goolord/alpha-nvim")
   use("folke/which-key.nvim")
@@ -70,33 +68,8 @@ return packer.startup(function(use)
   -- Treesitter
   use("nvim-treesitter/nvim-treesitter")
 
-  -- Git
-  use("lewis6991/gitsigns.nvim")
-
   -- Leap.nvim
   use({ "ggandor/leap.nvim", require = { "tpope/vim-repeat" } })
-
-  -- Zen mode
-  use("Pocco81/true-zen.nvim")
-
-  use("mbbill/undotree")
-  use("lervag/vimtex")
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-  })
-
-  use({
-    "folke/noice.nvim",
-    requires = {
-      "MunifTanjim/nui.nvim",
-      -- "rcarriga/nvim-notify",
-    },
-  })
-
-  -- For better search and replace
   use("nvim-pack/nvim-spectre")
 
   if PACKER_BOOTSTRAP then
