@@ -1,5 +1,6 @@
 local capabilities = require('blink.cmp').get_lsp_capabilities()
-require("lazydev").setup()
+require("lazydev").setup({})
+
 vim.g.lazydev_enable = true
 
 vim.lsp.config("lua_ls", {
@@ -16,12 +17,16 @@ vim.lsp.config("lua_ls", {
   }
 })
 
+vim.lsp.config("clangd", {
+  capabilities = capabilities,
+})
+
 vim.lsp.enable("lua_ls")
+vim.lsp.enable("clangd")
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'java',
   callback = function(args)
-    print("testing java")
     require('jdtls.jdtls_setup').setup({})
   end
 })

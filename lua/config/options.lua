@@ -34,4 +34,3 @@ vim.schedule(
     vim.opt.clipboard = "unnamedplus"
   end
 )
-

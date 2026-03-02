@@ -2,7 +2,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-
       {
         "folke/lazydev.nvim",
         ft = "lua", -- only load on lua files
@@ -14,9 +13,17 @@ return {
           },
         },
       },
+
+      {
+        "j-hui/fidget.nvim",
+        opts = {}
+      }
     },
 
     config = function()
     end,
+  },
+  {
+    "mfussenegger/nvim-jdtls"
   }
 }

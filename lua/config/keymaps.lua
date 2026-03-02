@@ -30,7 +30,6 @@ map("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
 local previewState = 0
 local mdpreview = function()
-  print(previewState)
   if previewState == 0 then
     previewState = 1
     vim.cmd("MarkdownPreview")
@@ -42,3 +41,16 @@ local mdpreview = function()
   end
 end
 map("n", "<space>m", mdpreview, { desc = "Toggle Markdown Preview" })
+
+local hintState = 0
+local hintToggle = function()
+  if hintState == 0 then
+    hintState = 1
+    vim.lsp.inlay_hint.enable(true)
+  elseif hintState == 1 then
+    hintState = 0
+    vim.lsp.inlay_hint.enable(false)
+  end
+end
+
+map("n", "<space>th", hintToggle, { desc = "Toggle inlay hint" })
