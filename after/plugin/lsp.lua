@@ -24,12 +24,12 @@ vim.lsp.config("clangd", {
   capabilities = capabilities,
 })
 
-vim.lsp.enable("lua_ls")
-vim.lsp.enable("clangd")
-
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'java',
   callback = function(args)
     require('jdtls.jdtls_setup').setup({})
   end
 })
+
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("clangd")
