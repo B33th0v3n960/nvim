@@ -25,3 +25,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd("cd " .. vim.fn.getcwd())
+  end,
+})

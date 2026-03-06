@@ -12,18 +12,18 @@ function M:setup()
       "-data",
       workspace_dir,
     },
-    root_dir = vim.fs.root(0, { 'gradlew', '.git', 'mvnw' }),
+
+    root_dir = vim.fs.root(0, { "pom.xml", "gradlew", ".git", "mvnw", }),
 
     settings = {
-      java = {
-      }
+      java = {}
     },
 
     init_options = {
       bundles = {}
     },
   }
-  require('jdtls').start_or_attach(config)
+  require("jdtls").start_or_attach(config)
 end
 
 return M

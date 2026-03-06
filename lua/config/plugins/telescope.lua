@@ -29,6 +29,8 @@ return {
       vim.keymap.set("n", "<space>fd", require("telescope.builtin").find_files)
       vim.keymap.set("n", "<space>fh", require("telescope.builtin").help_tags)
       vim.keymap.set("n", "<space>en", function()
+        local cwd = vim.fn.stdpath("config")
+        vim.cmd("cd " .. cwd)
         require("telescope.builtin").find_files {
           cwd = vim.fn.stdpath("config")
         }

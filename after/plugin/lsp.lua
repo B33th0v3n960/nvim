@@ -1,4 +1,4 @@
-local capabilities = require('blink.cmp').get_lsp_capabilities()
+local capabilities = require("blink.cmp").get_lsp_capabilities()
 require("lazydev").setup({})
 
 vim.g.lazydev_enable = true
@@ -24,10 +24,10 @@ vim.lsp.config("clangd", {
   capabilities = capabilities,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'java',
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "java",
   callback = function(args)
-    require('jdtls.jdtls_setup').setup({})
+    require("jdtls.jdtls_setup").setup({})
   end
 })
 
