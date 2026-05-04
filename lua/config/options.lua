@@ -23,6 +23,7 @@ local options = {
   termguicolors = true,
   textwidth = 80,
   numberwidth = 4,
+  foldlevelstart = 99,
 }
 
 for key, value in pairs(options) do

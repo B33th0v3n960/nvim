@@ -1,28 +1,27 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
+  'nvim-treesitter/nvim-treesitter',
+  branch = 'main',
   lazy = false,
-  branch = 'master',
-  build = ":TSUpdate",
+  build = ':TSUpdate',
   config = function()
-    require"nvim-treesitter.configs".setup {
-      ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
-      sync_install = false,
-      auto_install = true,
-      -- ignore_install = { "javascript" },
+    require('nvim-treesitter').setup()
 
-      highlight = {
-        enable = true,
-
-        disable = function(lang, buf)
-            local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-                return true
-            end
-        end,
-
-        additional_vim_regex_highlighting = false,
-      },
-    }
-  end
+    require('nvim-treesitter').install({
+      'lua', 'vim', 'vimdoc', 'bash', 'markdown', 'markdown_inline',
+      'python', 'json', 'yaml', 'html', 'css', 'javascript', 'tsx',
+      -- add whatever else you actually use
+    })
+    -- main no longer auto-enables anything. Turn on highlighting per filetype.
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(args)
+        local ft = vim.bo[args.buf].filetype
+        local lang = vim.treesitter.language.get_lang(ft)
+        if lang and pcall(vim.treesitter.language.add, lang) then
+          pcall(vim.treesitter.start, args.buf, lang)
+          vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          vim.wo[0][0].foldmethod = 'expr'
+        end
+      end,
+    })
+  end,
 }
