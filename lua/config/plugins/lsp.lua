@@ -11,11 +11,19 @@ return {
           },
         },
       },
-      { "j-hui/fidget.nvim", opts = {} }
+      { "j-hui/fidget.nvim", opts = {} },
     },
     config = function() end,
   },
   {
-    "mfussenegger/nvim-jdtls"
-  }
+    "williamboman/mason.nvim",
+    dependencies = {
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
+    cmd = "Mason",
+    opts = {},
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+  },
 }
