@@ -16,8 +16,8 @@ map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Lsp keymaps
-map("n", "J", function() vim.diagnostic.open_float() end)
-map("n", "<space>f", function() vim.lsp.buf.format() end)
+map("n", "J", vim.diagnostic.open_float)
+map("n", "<space>f", vim.lsp.buf.format)
 map("n", "<space>a", vim.lsp.buf.code_action, { desc = "Code Action" })
 map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
@@ -25,32 +25,16 @@ map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickf
 map("n", "<M-j>", "<cmd>cnext<CR>")
 map("n", "<M-k>", "<cmd>cprev<CR>")
 
+-- Toggle Inlay Hints
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+  callback = function(event)
+    map("n", "<space>th", function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
+    end, { buffer = event.buf, desc = "LSP: [T]oggle Inlay [H]ints" })
+  end,
+})
+
 -- External package keymap
 map("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
-
-local previewState = 0
-local mdpreview = function()
-  if previewState == 0 then
-    previewState = 1
-    vim.cmd("MarkdownPreview")
-    print("Starting Markdown Preview")
-  elseif previewState == 1 then
-    previewState = 0
-    vim.cmd("MarkdownPreviewStop")
-    print("Closing Markdown Preview")
-  end
-end
-map("n", "<space>m", mdpreview, { desc = "Toggle Markdown Preview" })
-
-local hintState = 0
-local hintToggle = function()
-  if hintState == 0 then
-    hintState = 1
-    vim.lsp.inlay_hint.enable(true)
-  elseif hintState == 1 then
-    hintState = 0
-    vim.lsp.inlay_hint.enable(false)
-  end
-end
-
-map("n", "<space>th", hintToggle, { desc = "Toggle inlay hint" })
+map("n", "<space>m", "<cmd>MarkdownPreviewToggle<cr>", { desc = "Toggle Markdown Preview" })
