@@ -1,26 +1,26 @@
 return {
   {
-    'nvim-telescope/telescope.nvim',
-    version = '*',
+    "nvim-telescope/telescope.nvim",
+    version = "*",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
-      require("telescope").setup {
-        pickers    = {
+      require("telescope").setup({
+        pickers = {
           find_files = {
-            theme = "ivy"
-          }
+            theme = "ivy",
+          },
         },
         extensions = {
           fzf = {},
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
           },
-        }
-      }
+        },
+      })
 
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
@@ -31,10 +31,10 @@ return {
       vim.keymap.set("n", "<space>en", function()
         local cwd = vim.fn.stdpath("config")
         vim.cmd("cd " .. cwd)
-        require("telescope.builtin").find_files {
-          cwd = vim.fn.stdpath("config")
-        }
+        require("telescope.builtin").find_files({
+          cwd = vim.fn.stdpath("config"),
+        })
       end)
-    end
-  }
+    end,
+  },
 }
