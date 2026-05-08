@@ -8,6 +8,11 @@ require("mason-tool-installer").setup({
     "clangd",
     "jdtls",
     "json-lsp",
+    "ltex-ls-plus",
+    "tinymist",
+    "typescript-language-server",
+    "css-lsp",
+    "html-lsp",
   },
 })
 
@@ -32,6 +37,16 @@ vim.lsp.config("lua_ls", {
   },
 })
 
+vim.lsp.config("tinymist", {
+  cmd = { "tinymist" },
+  filetypes = { "typst" },
+  root_markers = { ".git" },
+  settings = {
+    formatterMode = "typstyle",
+    exportPdf = "onSave",
+  },
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
   callback = function(args)
@@ -39,4 +54,4 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.lsp.enable({ "lua_ls", "stylua", "clangd", "jsonls" })
+vim.lsp.enable({ "lua_ls", "stylua", "clangd", "jsonls", "ltex_plus", "tinymist", "ts_ls", "cssls", "html" })
