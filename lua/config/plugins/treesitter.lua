@@ -7,6 +7,10 @@ return {
     require("nvim-treesitter").setup()
 
     require("nvim-treesitter").install({
+      "c",
+      "cpp",
+      "make",
+      "cmake",
       "lua",
       "vim",
       "vimdoc",
@@ -14,13 +18,17 @@ return {
       "markdown",
       "markdown_inline",
       "python",
-      "json",
       "yaml",
+      "toml",
       "html",
       "css",
       "javascript",
+      "json",
       "tsx",
-      -- add whatever else you actually use
+      "rust",
+      "typst",
+      "latex",
+      "go",
     })
     -- main no longer auto-enables anything. Turn on highlighting per filetype.
     vim.api.nvim_create_autocmd("FileType", {
