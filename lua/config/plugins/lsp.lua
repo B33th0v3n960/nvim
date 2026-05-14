@@ -26,4 +26,8 @@ return {
   {
     "mfussenegger/nvim-jdtls",
   },
+  {
+    "stevearc/conform.nvim",
+    opts = {},
+  },
 }

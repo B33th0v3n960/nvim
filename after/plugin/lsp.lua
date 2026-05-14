@@ -1,6 +1,7 @@
 local capabilities = require("blink.cmp").get_lsp_capabilities()
 require("lazydev").setup({})
 require("mason").setup()
+
 require("mason-tool-installer").setup({
   ensure_installed = {
     "lua-language-server",
@@ -13,6 +14,10 @@ require("mason-tool-installer").setup({
     "typescript-language-server",
     "css-lsp",
     "html-lsp",
+    "pyright",
+    "isort",
+    "black",
+    "prettierd",
   },
 })
 
@@ -54,4 +59,25 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.lsp.enable({ "lua_ls", "stylua", "clangd", "jsonls", "ltex_plus", "tinymist", "ts_ls", "cssls", "html" })
+vim.lsp.enable({
+  "lua_ls",
+  "stylua",
+  "clangd",
+  "jsonls",
+  "ltex_plus",
+  "tinymist",
+  "ts_ls",
+  "cssls",
+  "html",
+  "pyright",
+})
+
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    python = { "isort", "black" },
+    -- rust = { "rustfmt", lsp_format = "fallback" },
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+    json = { "prettierd", "prettier", stop_after_first = true },
+  },
+})
