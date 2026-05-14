@@ -29,6 +29,7 @@ return {
       "typst",
       "latex",
       "go",
+      "java",
     })
     -- main no longer auto-enables anything. Turn on highlighting per filetype.
     vim.api.nvim_create_autocmd("FileType", {

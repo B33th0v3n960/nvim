@@ -30,8 +30,6 @@ for key, value in pairs(options) do
   vim.opt[key] = value
 end
 
-vim.schedule(
-  function()
-    vim.opt.clipboard = "unnamedplus"
-  end
-)
+vim.schedule(function()
+  vim.opt.clipboard = "unnamedplus"
+end)
