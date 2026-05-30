@@ -21,7 +21,9 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     cmd = "Mason",
-    opts = {},
+    opts = {
+      PATH = "append",
+    },
   },
   {
     "mfussenegger/nvim-jdtls",
@@ -29,5 +31,15 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {},
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^9",
+    lazy = false,
+    ["rust-analyzer"] = {
+      cargo = {
+        allFeatures = true,
+      },
+    },
   },
 }

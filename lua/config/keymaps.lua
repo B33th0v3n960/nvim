@@ -18,7 +18,7 @@ map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 -- Lsp keymaps
 map("n", "J", vim.diagnostic.open_float)
 -- map("n", "<space>f", vim.lsp.buf.format)
-map("n", "<space>a", vim.lsp.buf.code_action, { desc = "Code Action" })
+-- map("n", "<space>a", vim.lsp.buf.code_action, { desc = "Code Action" })
 map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
 
 -- Moving between quickfix list

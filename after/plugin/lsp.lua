@@ -44,6 +44,7 @@ vim.lsp.config("lua_ls", {
 
 vim.lsp.config("tinymist", {
   cmd = { "tinymist" },
+  capabilities = capabilities,
   filetypes = { "typst" },
   root_markers = { ".git" },
   settings = {
@@ -70,14 +71,16 @@ vim.lsp.enable({
   "cssls",
   "html",
   "pyright",
+  -- "rust_analyzer",
 })
 
 require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "isort", "black" },
-    -- rust = { "rustfmt", lsp_format = "fallback" },
+    rust = { "rustfmt", lsp_format = "fallback" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
     json = { "prettierd", "prettier", stop_after_first = true },
+    typst = { "typstyle", lsp_format = "prefer" },
   },
 })
