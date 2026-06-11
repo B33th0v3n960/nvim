@@ -7,6 +7,7 @@ require("mason-tool-installer").setup({
     "lua-language-server",
     "stylua",
     "clangd",
+    "clang-format",
     "jdtls",
     "json-lsp",
     "ltex-ls-plus",
@@ -18,12 +19,18 @@ require("mason-tool-installer").setup({
     "isort",
     "black",
     "prettierd",
+    "eslint_d",
+    "stylelint",
+    "astro-language-server",
+    "emmet-language-server",
   },
 })
 
 vim.g.lazydev_enable = true
 
 vim.lsp.config("*", { capabilities = capabilities })
+
+vim.lsp.config("clangd", { capabilities = capabilities, cmd = { "clangd", "--background-index" } })
 
 vim.lsp.config("lua_ls", {
   cmd = { "lua-language-server" },
@@ -53,6 +60,15 @@ vim.lsp.config("tinymist", {
   },
 })
 
+vim.lsp.config("astro", {
+  capabilities = capabilities,
+  init_options = {
+    typescript = {
+      tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
+    },
+  },
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
   callback = function(args)
@@ -71,6 +87,8 @@ vim.lsp.enable({
   "cssls",
   "html",
   "pyright",
+  "astro",
+  "emmet_language_server",
   -- "rust_analyzer",
 })
 
@@ -79,8 +97,20 @@ require("conform").setup({
     lua = { "stylua" },
     python = { "isort", "black" },
     rust = { "rustfmt", lsp_format = "fallback" },
-    javascript = { "prettierd", "prettier", stop_after_first = true },
     json = { "prettierd", "prettier", stop_after_first = true },
     typst = { "typstyle", lsp_format = "prefer" },
+    c = { "clang_format", lsp_format = "fallback" },
+    cpp = { "clang_format", lsp_format = "fallback" },
+
+    html = { "prettierd" },
+    css = { "prettierd", "stylelint" },
+    scss = { "prettierd", "stylelint" },
+
+    javascript = { "prettierd", "eslint_d", stop_after_first = true },
+    typescript = { "prettierd", "eslint_d", stop_after_first = true },
+    javascriptreact = { "prettierd", "eslint_d" },
+    typescriptreact = { "prettierd", "eslint_d" },
+
+    astro = { "prettierd" }, -- requires prettier-plugin-astro
   },
 })
