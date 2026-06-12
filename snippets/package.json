@@ -8,6 +8,13 @@
           "cpp"
         ],
         "path": "./c.json"
+      },
+      {
+        "language": [
+          "astro",
+          "html"
+        ],
+        "path": "./html.json"
       }
     ]
   }

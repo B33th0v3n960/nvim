@@ -1,0 +1,12 @@
+{
+  "Void Elements": {
+    "prefix": "</",
+    "body": ["<${1:Tag}/>"],
+    "description": "Generates a self closing tag."
+  },
+  "HTML Tag": {
+    "prefix": "<",
+    "body": ["<${1:Tag}>", "$0", "</$1>"],
+    "description": "Generates a html tag."
+  }
+}
