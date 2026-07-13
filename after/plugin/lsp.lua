@@ -105,6 +105,7 @@ require("conform").setup({
     html = { "prettierd" },
     css = { "prettierd", "stylelint" },
     scss = { "prettierd", "stylelint" },
+    markdown = { "prettierd", lsp_format = "fallback" },
 
     javascript = { "prettierd", "eslint_d", stop_after_first = true },
     typescript = { "prettierd", "eslint_d", stop_after_first = true },
