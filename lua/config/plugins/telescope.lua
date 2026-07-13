@@ -12,6 +12,9 @@ return {
         pickers = {
           find_files = {
             theme = "ivy",
+            hidden = true,
+            no_ignore = false,
+            file_ignore_patterns = { "^.git/" },
           },
         },
         extensions = {
