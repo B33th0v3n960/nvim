@@ -33,5 +33,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     vim.cmd("cd " .. vim.fn.getcwd())
+    vim.cmd("delmarks! | delmarks A-Z0-9")
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    -- Let treesitter compute folds first
+    vim.opt_local.foldmethod = "expr"
+    vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+
+    -- Then switch to manual to lock them in + allow zf
+    vim.defer_fn(function()
+      vim.opt_local.foldmethod = "manual"
+    end, 100) -- small delay lets treesitter finish
   end,
 })
