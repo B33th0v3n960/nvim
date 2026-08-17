@@ -23,6 +23,8 @@ require("mason-tool-installer").setup({
     "stylelint",
     "astro-language-server",
     "emmet-language-server",
+    "lemminx",
+    "xmlformatter",
   },
 })
 
@@ -89,6 +91,7 @@ vim.lsp.enable({
   "pyright",
   "astro",
   "emmet_language_server",
+  "lemminx",
   -- "rust_analyzer",
 })
 
@@ -96,8 +99,10 @@ require("conform").setup({
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "isort", "black" },
+    java = { lsp_format = "fallback" },
     rust = { "rustfmt", lsp_format = "fallback" },
-    json = { "prettierd", "prettier", stop_after_first = true },
+    json = { "prettierd", lsp_format = "fallback", stop_after_first = true },
+    jsonc = { "prettierd", lsp_format = "fallback", stop_after_first = true },
     typst = { "typstyle", lsp_format = "prefer" },
     c = { "clang_format", lsp_format = "fallback" },
     cpp = { "clang_format", lsp_format = "fallback" },
@@ -113,5 +118,6 @@ require("conform").setup({
     typescriptreact = { "prettierd", "eslint_d" },
 
     astro = { "prettierd" }, -- requires prettier-plugin-astro
+    xml = { "xmlformatter" },
   },
 })
