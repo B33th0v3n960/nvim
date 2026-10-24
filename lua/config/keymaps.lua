@@ -23,9 +23,9 @@ map("n", "<space>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickf
 map("n", "<M-j>", "<cmd>cnext<CR>")
 map("n", "<M-k>", "<cmd>cprev<CR>")
 
-map({ "n", "v" }, "<space>cf", function()
-  require("conform").format({ async = true, lsp_format = "fallback" })
-end, { desc = "[C]ode [F]ormat" })
+-- map({ "n", "v" }, "<space>cf", function()
+--   require("conform").format({ async = true, lsp_format = "fallback" })
+-- end, { desc = "[C]ode [F]ormat" })
 
 -- Toggle Inlay Hints
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -35,9 +35,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
     end, { buffer = event.buf, desc = "LSP: [T]oggle Inlay [H]ints" })
 
-    -- map("n", "<space>cf", function()
-    --   require("conform").format({ bufnr = event.buf })
-    -- end, { buffer = event.buf, desc = "[C]ode [F]ormat" })
+    map("n", "<space>cf", function()
+      require("conform").format({ bufnr = event.buf })
+    end, { buffer = event.buf, desc = "[C]ode [F]ormat" })
   end,
 })
 
